@@ -304,7 +304,16 @@ const ParseAppleMusicLyrics = (text: string): Promise<ParsedLyrics> => {
 				}
 			}
 		}
-
+		
+		if (result.Lyrics.length === 0) {
+			for (let lyricsIndex = 0; lyricsIndex < text.length; lyricsIndex++) {
+				const lyric = text[lyricsIndex];
+				result.Lyrics.push({
+					Text: lyric.words
+				});
+			}
+		}
+		
 		// Determine our language AND natural-alignment
 		{
 			// Put all our text together for processing
